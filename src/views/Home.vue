@@ -59,7 +59,7 @@ export default {
         url: "https://api.github.com/users",
         client_id: "18ec191b0f775ede79b7",
         client_secret: "f669c98dfa86b50e53b41f292668af1aab4b9a5d",
-        count: 7,
+        count: 10,
         sort: "created: asc",
       },
       user: [],
