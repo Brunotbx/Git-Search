@@ -5,18 +5,21 @@
         <div class="row text-center justify-content-center py-2">
           <h1 class="display-4">GitHub - Search</h1>
           <p class="lead mb-5">Informe o usuário que deseja buscar</p>
-          <form action="" class="col-xl-5 col-9">
-            <div class="input-group-lg">
+
+          <form action="" class="col-xl-5 col-9" >
+            <div class="input-group mb-3">
               <input
-                @keyup="getUser"
-                v-focus
-                id="search"
-                type="text"
-                class="form-control"
-                required
-              />
+                  v-focus
+                  ref="myInput"
+                  id="search"
+                  type="text"
+                  class="form-control"
+                  required
+                />
+              <button class="btn btn-secondary border" @click='getFormValue()'>Buscar</button>
             </div>
           </form>
+
         </div>
       </div>
     </section>
@@ -62,6 +65,7 @@ export default {
         count: 10,
         sort: "created: asc",
       },
+      output: "",
       user: [],
       repos: [],
     };
@@ -73,8 +77,13 @@ export default {
   },
 
   methods: {
-    getUser(e) {
-      const user = e.target.value;
+    getFormValue(){
+      this.output = this.$refs.myInput.value;
+      this.getUser()
+    },
+
+    getUser() {
+      const user = this.output;
       const { url, client_id, client_secret, count, sort } = this.github;
 
       axios
